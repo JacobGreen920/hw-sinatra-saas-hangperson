@@ -35,12 +35,11 @@ class HangpersonGame
       throw ArgumentError
     elsif not /[a-z]/ =~ letter.downcase
       throw ArgumentError
-    end
-    if self.word.include?(letter.downcase) and not self.guesses.include?(letter.downcase)
-      self.guesses = self.guesses + letter
+    elsif self.word.include?(letter.downcase) and not self.guesses.include?(letter.downcase)
+      self.guesses = self.guesses + letter.downcase
       return true
     elsif not self.word.include?(letter.downcase) and not self.wrong_guesses.include?(letter.downcase)
-      self.wrong_guesses = self.wrong_guesses + letter
+      self.wrong_guesses = self.wrong_guesses + letter.downcase
       return true
     end
     return false
@@ -59,7 +58,7 @@ class HangpersonGame
   end
   
   def check_win_or_lose
-    if not self.word_with_guesses.include?('-')
+    if not self.word_with_guesses.include?('-') and self.guesses != ""
       return :win
     elsif self.wrong_guesses.length >= 7
       return :lose
