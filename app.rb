@@ -46,6 +46,7 @@ class HangpersonApp < Sinatra::Base
       guessVal = @game.guess(letter)
     rescue
       flash[:message] = "Invalid guess."
+      guessVal = true
     end
     if not guessVal
       flash[:message] = "You have already used that letter."
