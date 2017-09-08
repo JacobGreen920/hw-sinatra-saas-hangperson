@@ -33,6 +33,7 @@ class HangpersonGame
   def guess(letter)
     if (letter == nil) || (letter == "") || (not letter.downcase =~ /[a-z]/)
       throw ArgumentError
+      return
     elsif self.word.include?(letter.downcase) and not self.guesses.include?(letter.downcase)
       self.guesses = self.guesses + letter.downcase
       return true
